@@ -18,7 +18,7 @@ post '/' do
 end
 
 post '/recording' do
-  recording_url = params[:RecordingUrl]
+  recording_url = params[:RecordingUrl] + '.mp3'
 
   account_sid = ENV['twillio_account_sid']
   auth_token = ENV['twillio_auth_token']
