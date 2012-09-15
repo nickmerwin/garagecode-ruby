@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title GarageCode
+  %body
+    %table
+      - @opens.each do |open|
+        %tr
+          %td= open.created_at
+          %td
+            %a{href:open.url, target:'_blank'} Url
