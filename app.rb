@@ -11,8 +11,8 @@ class Open < ActiveRecord::Base; end
 post '/' do
   logger.info params
   response = Twilio::TwiML::Response.new do |r|
-    r.Play 'http://cl.ly/3Y0X2L47053V/download/Memo.mp3'
-    r.Record action: '/recording', maxLength: 5, playBeep: false
+    r.Play 'https://mer.s3.amazonaws.com/answer.mp3'
+    r.Record action: '/recording', maxLength: 5, playBeep: true
   end
   response.text
 end
