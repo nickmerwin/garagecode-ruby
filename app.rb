@@ -25,11 +25,11 @@ class Open < ActiveRecord::Base; end
 
 post '/' do
   logger.info params
-  response = Twilio::TwiML::VoiceRespons.new do |r|
-    r.Play 'https://mer.s3.amazonaws.com/answer.mp3'
-    r.Record action: '/recording', maxLength: 5, playBeep: true
+  response = Twilio::TwiML::VoiceResponse.new do |r|
+    r.play url: 'https://mer.s3.amazonaws.com/answer.mp3'
+    r.record action: '/recording', maxLength: 5, playBeep: true
   end
-  response.text
+  response
 end
 
 post '/recording' do
@@ -49,9 +49,9 @@ post '/recording' do
 
   Open.create url: recording_url
 
-  response = Twilio::TwiML::VoiceRespons.new do |r|
-    r.Play 'http://nickmerwin.s3.amazonaws.com/9.wav', loop: 10
-    r.Hangup
+  response = Twilio::TwiML::VoiceResponse.new do |r|
+    r.play digits: '9', loop: 10
+    r.hangup
   end
 
   response.text
