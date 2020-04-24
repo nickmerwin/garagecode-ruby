@@ -50,7 +50,7 @@ post '/recording' do
   Open.create url: recording_url
 
   response = Twilio::TwiML::VoiceResponse.new do |r|
-    r.play digits: '9', loop: 10
+    r.play digits: '9999'
     r.hangup
   end
 
