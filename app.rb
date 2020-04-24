@@ -29,7 +29,7 @@ post '/' do
     r.play url: 'https://mer.s3.amazonaws.com/answer.mp3'
     r.record action: '/recording', maxLength: 5, playBeep: true
   end
-  response
+  response.to_s
 end
 
 post '/recording' do
@@ -54,7 +54,7 @@ post '/recording' do
     r.hangup
   end
 
-  response.text
+  response.to_s
 end
 
 get '/' do
