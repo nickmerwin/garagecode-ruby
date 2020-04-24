@@ -41,7 +41,7 @@ post '/recording' do
   # set up a client to talk to the Twilio REST API
   @client = Twilio::REST::Client.new account_sid, auth_token
 
-  @client.account.sms.messages.create(
+  @client.messages.create(
     :from => '+13103214772',
     :to => '+12133042136',
     :body => recording_url
