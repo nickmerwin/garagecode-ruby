@@ -4,7 +4,7 @@ require 'builder'
 require 'twilio-ruby'
 require 'haml'
 
-set :database, ENV['DATABASE_URL'] || 'sqlite://garage.db'
+set :database, database: (ENV['DATABASE_URL'] || 'sqlite3://garage.db'), adapter: 'sqlite3'
 
 class Open < ActiveRecord::Base; end
 
