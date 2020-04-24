@@ -4,9 +4,20 @@ require 'builder'
 require 'twilio-ruby'
 require 'haml'
 
-if ENV['RACK_ENV'] == 'production'
-  set :database, database: ENV['DATABASE_URL'], adapter: 'postgresql'
-else
+configure :production do
+  db = URI.parse ENV['DATABASE_URL']
+
+  ActiveRecord::Base.establish_connection(
+    :adapter => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'utf8'
+  )
+end
+
+configure :development do
   set :database, database: 'garage.db', adapter: 'sqlite3'
 end
 
