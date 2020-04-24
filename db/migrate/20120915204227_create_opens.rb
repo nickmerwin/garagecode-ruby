@@ -1,4 +1,4 @@
-class CreateOpens < ActiveRecord::Migration
+class CreateOpens < ActiveRecord::Migration[4.2]
   def self.up
     create_table :opens do |t|
       t.string :url
